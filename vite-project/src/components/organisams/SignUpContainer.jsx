@@ -26,7 +26,7 @@ const SignUpContainer = () => {
             console.log("Sign up successful");
             setTimeout(() => {
                 navigate('/auth/signin');
-            }, 3000);
+            }, 1000);
         }
     }, [isSuccess, navigate]);
 

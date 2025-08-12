@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import SignUpContainer from "./components/organisams/SignUpContainer";
-import SignInCard from "./components/organisams/signInCard";
+import SignInContainer from "./components/organisams/SignInContainer";
 import NotFound from "./pages/Notfound/Notfound";
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/HomePage/HomePage";
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth/signup" element={<Auth><SignUpContainer></SignUpContainer></Auth>} />
-        <Route path = "/auth/signin" element={<Auth><SignInCard></SignInCard></Auth>} />
+        <Route path = "/auth/signin" element={<Auth><SignInContainer /></Auth>} />
         <Route path = "*"  element = {<NotFound />}/>
       </Routes>
       <Toaster />
