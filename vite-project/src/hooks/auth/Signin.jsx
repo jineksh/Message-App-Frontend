@@ -19,9 +19,13 @@ export const useSignIn = () => {
     onSuccess: (data) => {
       console.log(data); // 🔹 API se aaya pura response print karna
 
+        const userObj = JSON.stringify(data);
+        console.log(typeof userObj);
       // 🔹 Agar API se data aaya hai to token ko localStorage me save karna
       if (data?.data) { 
-        localStorage.setItem("authToken", data.data); 
+        localStorage.setItem("authToken", userObj);
+        localStorage.setItem("token",data.data);
+        // 🔹 Ye localStorage me token save karta hai
         // 🔹 "authToken" key me token store ho jayega, taaki future API calls me use ho sake
       }
 
