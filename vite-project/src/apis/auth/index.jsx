@@ -1,11 +1,11 @@
 import axiosInstance from "@/config/axios";
 
-export const singUp = async ({email,password,username})=>{
+export const singUp = async ({email,password,name})=>{
     try {
         const response = await axiosInstance.post('/users/singup',{
             email,
             password,
-            username
+            name
         });
         return response.data;
     }

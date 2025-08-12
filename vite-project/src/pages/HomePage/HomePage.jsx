@@ -26,13 +26,13 @@ const Home = () => {
         {/* CTA Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <Button
-            className="bg-white text-fuchsia-800 hover:bg-gray-200 font-semibold px-6 py-3"
+            className="bg-white text-fuchsia-800 hover:bg-gray-200 cursor-pointer font-semibold px-6 py-3"
             onClick={() => navigate("/auth/signup")}
           >
             Get Started
           </Button>
           <Button
-            className="border border-white bg-transparent text-white hover:bg-white hover:text-fuchsia-800 font-semibold px-6 py-3"
+            className="bg-white text-fuchsia-800  hover:bg-gray-200 cursor-pointer font-semibold px-6 py-3"
             onClick={() => navigate("/auth/signin")}
           >
             Sign In
