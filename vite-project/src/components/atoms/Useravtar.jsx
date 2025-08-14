@@ -11,25 +11,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner"; 
 import { useNavigate } from 'react-router-dom';
+import  { useCreateWorkspaceModal } from "@/hooks/contextHooks/Workspace"; // ✅ Fixed import
 
 const Useravtar = () => {
     const { Auth, logout } = useAuth();
     const { user } = Auth;
     const navigate = useNavigate();
-    const [isLoggingOut, setIsLoggingOut] = useState(false); // 🔹 Loader state
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+    const { setIsCreateWorkSpaceModalOpen } = useCreateWorkspaceModal(); // ✅ works with context
 
     async function handleLogout() {
         try {
-            setIsLoggingOut(true); // 🔹 Loader start
+            setIsLoggingOut(true);
             await logout();
-            toast("You've been logged out successfully!"); // 🔹 Success toast
+            toast("You've been logged out successfully!");
             navigate('/auth/signin');
-             // Redirect after toast
         } catch (error) {
             console.error("Logout failed:", error);
             toast("Hmm… something went wrong while logging out. Try again!");
         } finally {
-            setIsLoggingOut(false); // 🔹 Loader stop
+            setIsLoggingOut(false);
         }
     }
 
@@ -45,11 +47,17 @@ const Useravtar = () => {
                 <DropdownMenuContent align="end">
                     <DropdownMenuLabel>{user?.name || "User"}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
+
+                    {/* Create Workspace */}
+                    <DropdownMenuItem onClick={() => setIsCreateWorkSpaceModalOpen(true)}>
+                        Create Workspace
+                    </DropdownMenuItem>
+
                     <DropdownMenuItem>Profile</DropdownMenuItem>
                     <DropdownMenuItem>Settings</DropdownMenuItem>
                     <DropdownMenuItem 
                         onClick={handleLogout} 
-                        disabled={isLoggingOut} // 🔹 Disable during logout
+                        disabled={isLoggingOut}
                         className="flex items-center gap-2"
                     >
                         {isLoggingOut && (

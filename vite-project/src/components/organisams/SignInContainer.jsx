@@ -18,7 +18,7 @@ const SignInContainer = () => {
         if (isSuccess) {
             // Token set karo signin success ke baad
             setTimeout(()=>{
-                navigate('/');
+                navigate('/workspace');
             },1000);
         }
     }, [isSuccess, navigate]);

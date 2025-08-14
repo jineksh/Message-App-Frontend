@@ -9,6 +9,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner"
 import { AppContextProvider } from "./context/AppContext";
 import ProtectedRoutes from "./components/morecules/ProtectedRoutes";
+import CreateWorkSpaceModal from "@/components/morecules/CreateWorkSpaceModal";
+
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -16,13 +18,14 @@ function App() {
       <QueryClientProvider client={queryClient} >
         <AppContextProvider>
           <Routes>
-            <Route path="/" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
+            <Route path="/" element={<Home />} />
             <Route path="/auth/signup" element={<Auth><SignUpContainer></SignUpContainer></Auth>} />
             <Route path="/auth/signin" element={<Auth><SignInContainer /></Auth>} />
-            <Route path="/workspace" element={<Workspace />} />
+            <Route path="/workspace" element={<ProtectedRoutes><Workspace /></ProtectedRoutes>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />
+          <CreateWorkSpaceModal />
         </AppContextProvider>
       </QueryClientProvider>
     </>
