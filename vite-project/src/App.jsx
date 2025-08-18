@@ -3,8 +3,8 @@ import SignUpContainer from "./components/organisams/SignUpContainer";
 import SignInContainer from "./components/organisams/SignInContainer";
 import NotFound from "./pages/Notfound/Notfound";
 import Auth from "./pages/auth/Auth";
-import Home from "./pages/HomePage/HomePage";
-import Workspace from "./pages/workspace/Workspace";
+import Start from "./pages/StartPage/StartPage";
+import Home from "./pages/Home/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/sonner"
 import { AppContextProvider } from "./context/AppContext";
@@ -18,10 +18,10 @@ function App() {
       <QueryClientProvider client={queryClient} >
         <AppContextProvider>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Start />} />
             <Route path="/auth/signup" element={<Auth><SignUpContainer></SignUpContainer></Auth>} />
             <Route path="/auth/signin" element={<Auth><SignInContainer /></Auth>} />
-            <Route path="/workspace" element={<ProtectedRoutes><Workspace /></ProtectedRoutes>} />
+            <Route path="/workspace" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Toaster />

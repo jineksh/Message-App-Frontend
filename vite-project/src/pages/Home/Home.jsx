@@ -3,7 +3,7 @@ import Useravtar from '@/components/atoms/Useravtar'
 import useFetchWorkspace from '@/hooks/workspace/useFetchWorkspace'
 import { toast } from "sonner"
 
-const Workspace = () => {
+const Home = () => {
   const { isPending, isSuccess, isError, workspaces } = useFetchWorkspace();
 
   useEffect(() => {
@@ -57,4 +57,4 @@ const Workspace = () => {
   );
 };
 
-export default Workspace;
+export default Home;

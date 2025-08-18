@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Start = () => {
   const navigate = useNavigate();
 
   return (
@@ -45,4 +45,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Start;

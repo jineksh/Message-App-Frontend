@@ -44,3 +44,22 @@ export const getWorkspaces = async () => {
         throw error?.response?.data || new Error("Network error");
     }
 }
+
+export const getWorkspaceById = async (workspaceId) => {
+    try{
+        // 🔹 Local storage se token fetch karo
+        const token = localStorage.getItem('token');
+
+        // 🔹 GET request bhejna with token
+        const response = await axios.get(`/workspace/${workspaceId}`, {
+            headers: {
+                Authorization: `Bearer ${token}` // Auth header
+            }
+        });
+        return response.data;
+    }
+    catch (error) {
+        console.error("Error fetching workspace by ID:", error?.response || error);
+        throw error?.response?.data || new Error("Network error");
+    }
+}
