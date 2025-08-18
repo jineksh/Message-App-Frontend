@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import Useravtar from '@/components/atoms/Useravtar'
 import useFetchWorkspace from '@/hooks/workspace/useFetchWorkspace'
 import { toast } from "sonner"
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const { isPending, isSuccess, isError, workspaces } = useFetchWorkspace();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isError) {
@@ -17,7 +19,7 @@ const Home = () => {
     if (isSuccess) {
       console.log("Fetched workspaces successfully:", workspaces);
     }
-  }, [isSuccess, workspaces]);
+  }, [isSuccess, workspaces, navigate]);
 
   return (
     <div className="p-4">
@@ -39,17 +41,7 @@ const Home = () => {
 
       {/* Workspaces List */}
       {isSuccess && workspaces?.length > 0 ? (
-        <ul className="space-y-2">
-          {workspaces.map((ws) => (
-            <li
-              key={ws._id}
-              className="p-3 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200"
-            >
-              <h2 className="font-semibold">{ws.name}</h2>
-              <p className="text-sm text-gray-600">{ws.description}</p>
-            </li>
-          ))}
-        </ul>
+        navigate(`/workspace/${workspaces[0]._id}`)
       ) : (
         isSuccess && <p>No workspaces found.</p>
       )}
