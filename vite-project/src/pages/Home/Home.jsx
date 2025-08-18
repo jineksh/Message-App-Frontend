@@ -8,16 +8,18 @@ const Home = () => {
   const { isPending, isSuccess, isError, workspaces } = useFetchWorkspace();
   const navigate = useNavigate();
 
+  // Handle error
   useEffect(() => {
     if (isError) {
       console.error("Error fetching workspaces:", isError);
-      toast.error("Failed to load workspaces. Please try again."); // 🔹 Error toast
+      toast.error("Failed to load workspaces. Please try again.");
     }
   }, [isError]);
 
+  // Navigate when workspaces are fetched
   useEffect(() => {
-    if (isSuccess) {
-      console.log("Fetched workspaces successfully:", workspaces);
+    if (isSuccess && workspaces?.length > 0) {
+      navigate(`/workspace/${workspaces[0]._id}`);
     }
   }, [isSuccess, workspaces, navigate]);
 
@@ -36,14 +38,12 @@ const Home = () => {
 
       {/* Error Fallback */}
       {isError && !isPending && (
-        <div className="text-red-500">Unable to fetch workspaces 😢</div>
+        <div className="text-red-500">Unable to fetch workspaces </div>
       )}
 
       {/* Workspaces List */}
-      {isSuccess && workspaces?.length > 0 ? (
-        navigate(`/workspace/${workspaces[0]._id}`)
-      ) : (
-        isSuccess && <p>No workspaces found.</p>
+      {isSuccess && workspaces?.length === 0 && (
+        <p>No workspaces found.</p>
       )}
     </div>
   );

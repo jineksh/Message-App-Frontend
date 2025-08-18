@@ -50,24 +50,26 @@ const WorkspaceSwitcher = () => {
                     <DropdownMenuSeparator />
 
                     {/* All Workspaces */}
-                    {workspaces?.map((ws) => (
-                        <DropdownMenuItem
-                            key={ws._id}
-                            className="cursor-default focus:bg-transparent hover:bg-transparent"
-                        >
-                            <div className="flex items-center justify-between w-full">
-                                <span className="text-sm truncate max-w-[150px]">{ws.name}</span>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="h-6 px-2 text-xs"
-                                    onClick={() => navigate(`/workspace/${ws._id}`)}
-                                >
-                                    Switch
-                                </Button>
-                            </div>
-                        </DropdownMenuItem>
-                    ))}
+                    {workspaces
+                        ?.filter((ws) => ws._id !== workspaceid) // current workspace ko hata diya
+                        .map((ws) => (
+                            <DropdownMenuItem
+                                key={ws._id}
+                                className="cursor-default focus:bg-transparent hover:bg-transparent"
+                            >
+                                <div className="flex items-center justify-between w-full">
+                                    <span className="text-sm truncate max-w-[150px]">{ws.name}</span>
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        className="h-6 px-2 text-xs"
+                                        onClick={() => navigate(`/workspace/${ws._id}`)}
+                                    >
+                                        Switch
+                                    </Button>
+                                </div>
+                            </DropdownMenuItem>
+                        ))}
 
                 </DropdownMenuContent>
             </DropdownMenu>
