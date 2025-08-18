@@ -2,10 +2,19 @@ import React from 'react'
 import Useravtar from '@/components/atoms/Useravtar'
 import SidebarButton from '@/components/morecules/sidebar/SidebarButton'
 import { BellIcon, HomeIcon, MessagesSquareIcon, MoreHorizontalIcon } from 'lucide-react'
+import WorkspaceSwitcher from './WorkspaceSwitcher'
+
 const WorkspaceSideBar = () => {
+    
     return (
+
+
+        
+
         <aside className='w-[70px] h-full bg-[#481349] flex flex-col items-center gap-y-4 pt-[10px] pb-[5px]'>
-            <SidebarButton Icon={HomeIcon} label="Home" />
+
+            <WorkspaceSwitcher />
+            <SidebarButton  Icon={HomeIcon} label="Home" />
 
             <SidebarButton Icon={MessagesSquareIcon} label="DMs" />
 

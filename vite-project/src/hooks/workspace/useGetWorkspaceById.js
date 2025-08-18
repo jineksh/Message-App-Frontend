@@ -8,9 +8,10 @@ const useGetWorkspaceById = (id) => {
     data: workspace,
   } = useQuery({
     queryKey: [`workspace-${id}`],
-    queryFn: getWorkspaceById,
+    queryFn:()=> getWorkspaceById(id),
     staleTime : 30000, // Function to call the API for fetching workspaces
     onSuccess: (data) => {
+        console.log("Fetched workspace successfully:", data);
       console.log("Fetched workspaces successfully:", data);
     },
     onError: (error) => {
