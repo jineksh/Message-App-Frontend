@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ChevronDownIcon, ListFilter, SquarePen } from 'lucide-react'   // ✅ Icons import
 import { useAuth } from '@/hooks/contextHooks/Auth'
-
+import { useWorkspacePreferenceModal } from '@/hooks/contextHooks/WorkspacePreference'
 const WorkspacePanelHeader = ({ workspace }) => {
   const { Auth } = useAuth();
 
@@ -19,6 +19,9 @@ const WorkspacePanelHeader = ({ workspace }) => {
     workspace?.owner?._id === Auth?.user?._id;
 
   console.log("Is Owner? ", isOwner);
+
+  const { intialValue, isWorkspacePreferenceModalOpen,
+    setIsWorkspacePreferenceModalOpen, setIntialValue } = useWorkspacePreferenceModal();
 
   return (
     <div className="flex items-center justify-between px-4 h-[50px] gap-2">
@@ -55,7 +58,10 @@ const WorkspacePanelHeader = ({ workspace }) => {
           {/* 🔹 Extra options only for owner */}
           {isOwner && (
             <>
-              <DropdownMenuItem className="text-sm cursor-pointer">
+              <DropdownMenuItem onClick={() => {
+                setIsWorkspacePreferenceModalOpen(true);
+                setIntialValue(workspace.name);
+              }} className="text-sm cursor-pointer">
                 Preferences
               </DropdownMenuItem>
               <DropdownMenuSeparator />

@@ -11,26 +11,30 @@ import { AppContextProvider } from "./context/AppContext";
 import ProtectedRoutes from "./components/morecules/ProtectedRoutes";
 import CreateWorkSpaceModal from "@/components/morecules/CreateWorkSpaceModal";
 import WorkspaceLayout from "@/pages/Workspace/Layout";
+import WorkspacePreferenceModal from "./components/organisams/workspace/WorkspacePreferenceModal";
 
 function App() {
   const queryClient = new QueryClient();
   return (
     <>
-    <div className="h-screen w-screen">
-      <QueryClientProvider client={queryClient} >
-        <AppContextProvider>
-          <Routes>
-            <Route path="/" element={<Start />} />
-            <Route path="/auth/signup" element={<Auth><SignUpContainer></SignUpContainer></Auth>} />
-            <Route path="/auth/signin" element={<Auth><SignInContainer /></Auth>} />
-            <Route path="/Home" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
-            <Route path="/workspace/:workspaceid" element={<ProtectedRoutes><WorkspaceLayout /></ProtectedRoutes>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Toaster />
-          <CreateWorkSpaceModal />
-        </AppContextProvider>
-      </QueryClientProvider>
+      <div className="h-screen w-screen">
+        <QueryClientProvider client={queryClient} >
+          <AppContextProvider>
+            <Routes>
+              <Route path="/" element={<Start />} />
+              <Route path="/auth/signup" element={<Auth><SignUpContainer></SignUpContainer></Auth>} />
+              <Route path="/auth/signin" element={<Auth><SignInContainer /></Auth>} />
+              <Route path="/Home" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
+              <Route path="/workspace/:workspaceid" element={<ProtectedRoutes><WorkspaceLayout /></ProtectedRoutes>} />
+              <Route path="*" element={<NotFound />} />
+
+            </Routes>
+            <Toaster />
+            <CreateWorkSpaceModal />
+            <WorkspacePreferenceModal />
+
+          </AppContextProvider>
+        </QueryClientProvider>
       </div>
     </>
   );

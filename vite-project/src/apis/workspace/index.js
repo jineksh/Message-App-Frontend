@@ -46,7 +46,7 @@ export const getWorkspaces = async () => {
 }
 
 export const getWorkspaceById = async (workspaceId) => {
-    try{
+    try {
         // 🔹 Local storage se token fetch karo
         const token = localStorage.getItem('token');
 
@@ -61,6 +61,51 @@ export const getWorkspaceById = async (workspaceId) => {
     }
     catch (error) {
         console.error("Error fetching workspace by ID:", error?.response || error);
+        throw error?.response?.data || new Error("Network error");
+    }
+}
+
+export const deleteWorkspace = async (workspaceId) => {
+    try {
+        // 🔹 Local storage se token fetch karo
+        const token = localStorage.getItem('token');
+
+        // 🔹 DELETE request bhejna with token
+        const response = await axios.delete(`/workspace/${workspaceId}`, {
+            headers: {
+                Authorization: `Bearer ${token}` // Auth header
+            }
+        });
+        return response.data.data;
+
+    } catch (error) {
+        console.error("Error deleting workspace:", error?.response || error);
+
+        throw error?.response?.data || new Error("Network error");
+    }
+}
+
+export const updateWorkspace = async (workspaceId,name ) => {
+    try {
+        // 🔹 Local storage se token fetch karo
+        const token = localStorage.getItem('token');
+
+        // 🔹 PUT request bhejna with token
+        const response = await axios.put(
+            `/workspace/${workspaceId}`,
+            { name },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Auth header
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response.data.data;
+
+    } catch (error) {
+        console.error("Error updating workspace:", error?.response || error);
+
         throw error?.response?.data || new Error("Network error");
     }
 }
