@@ -12,6 +12,7 @@ import ProtectedRoutes from "./components/morecules/ProtectedRoutes";
 import CreateWorkSpaceModal from "@/components/morecules/CreateWorkSpaceModal";
 import WorkspaceLayout from "@/pages/Workspace/Layout";
 import WorkspacePreferenceModal from "./components/organisams/workspace/WorkspacePreferenceModal";
+import CreateChannelModal from "./components/morecules/CreateChannelModal";
 
 function App() {
   const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ function App() {
             <Toaster />
             <CreateWorkSpaceModal />
             <WorkspacePreferenceModal />
+            <CreateChannelModal />
 
           </AppContextProvider>
         </QueryClientProvider>

@@ -10,8 +10,10 @@ import {
 import { ChevronDownIcon, ListFilter, SquarePen } from 'lucide-react'   // ✅ Icons import
 import { useAuth } from '@/hooks/contextHooks/Auth'
 import { useWorkspacePreferenceModal } from '@/hooks/contextHooks/WorkspacePreference'
+import { useCreateChannelModal } from '@/hooks/contextHooks/Channel'
 const WorkspacePanelHeader = ({ workspace }) => {
   const { Auth } = useAuth();
+  const { setIsCreateChannelModalOpen } = useCreateChannelModal();
 
   // 🔹 Safe check for owner from `workspace.owner`
   const isOwner =
@@ -68,6 +70,11 @@ const WorkspacePanelHeader = ({ workspace }) => {
               <DropdownMenuItem className="text-sm cursor-pointer">
                 Invite Members to {workspace?.name}
               </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={()=>setIsCreateChannelModalOpen(true)}  className="text-sm cursor-pointer">
+                Create Channel
+              </DropdownMenuItem>
+
             </>
           )}
         </DropdownMenuContent>
