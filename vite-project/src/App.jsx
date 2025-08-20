@@ -28,7 +28,7 @@ function App() {
               <Route path="/Home" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
               <Route path="/workspace/:workspaceid" element={<ProtectedRoutes><WorkspaceLayout /></ProtectedRoutes>} />
               <Route path="*" element={<NotFound />} />
-
+              <Route path="/workspace/:workspaceid/channels/:channelid" element={<ProtectedRoutes>Channel</ProtectedRoutes>} />
             </Routes>
             <Toaster />
             <CreateWorkSpaceModal />
