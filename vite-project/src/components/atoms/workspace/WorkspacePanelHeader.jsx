@@ -11,6 +11,7 @@ import { ChevronDownIcon, ListFilter, SquarePen } from 'lucide-react'   // ✅ I
 import { useAuth } from '@/hooks/contextHooks/Auth'
 import { useWorkspacePreferenceModal } from '@/hooks/contextHooks/WorkspacePreference'
 import { useCreateChannelModal } from '@/hooks/contextHooks/Channel'
+import InvitePeopleModal from '@/components/morecules/InvitePeopleModal'
 const WorkspacePanelHeader = ({ workspace }) => {
   const { Auth } = useAuth();
   const { setIsCreateChannelModalOpen } = useCreateChannelModal();
@@ -22,10 +23,14 @@ const WorkspacePanelHeader = ({ workspace }) => {
 
   console.log("Is Owner? ", isOwner);
 
+  const [open, setopen] = React.useState(false);
+
   const { intialValue, isWorkspacePreferenceModalOpen,
     setIsWorkspacePreferenceModalOpen, setIntialValue } = useWorkspacePreferenceModal();
 
   return (
+    <>
+    <InvitePeopleModal open={open} setopen={setopen} workspacename={workspace.name} joincode={workspace.joincode}/>
     <div className="flex items-center justify-between px-4 h-[50px] gap-2">
       {/* Workspace Dropdown */}
       <DropdownMenu>
@@ -67,7 +72,7 @@ const WorkspacePanelHeader = ({ workspace }) => {
                 Preferences
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-sm cursor-pointer">
+              <DropdownMenuItem onClick={()=>setopen(true)} className="text-sm cursor-pointer">
                 Invite Members to {workspace?.name}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
@@ -90,6 +95,7 @@ const WorkspacePanelHeader = ({ workspace }) => {
         </Button>
       </div>
     </div>
+    </>
   )
 }
 
