@@ -13,6 +13,7 @@ import CreateWorkSpaceModal from "@/components/morecules/CreateWorkSpaceModal";
 import WorkspaceLayout from "@/pages/Workspace/Layout";
 import WorkspacePreferenceModal from "./components/organisams/workspace/WorkspacePreferenceModal";
 import CreateChannelModal from "./components/morecules/CreateChannelModal";
+import Joinpage from "./pages/Joinpage/Joinpage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ function App() {
               <Route path="/Home" element={<ProtectedRoutes><Home /></ProtectedRoutes>} />
               <Route path="/workspace/:workspaceid" element={<ProtectedRoutes><WorkspaceLayout /></ProtectedRoutes>} />
               <Route path="*" element={<NotFound />} />
+              <Route path='/workspace/join/:workspaceid' element={<Joinpage></Joinpage>}></Route>
               <Route path="/workspace/:workspaceid/channels/:channelid" element={<ProtectedRoutes>Channel</ProtectedRoutes>} />
             </Routes>
             <Toaster />

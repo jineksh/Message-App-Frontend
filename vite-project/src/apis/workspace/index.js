@@ -134,3 +134,28 @@ export const addChannelToWorkspace = async ({workspaceid, name}) => {
         throw error?.response?.data || new Error("Network error");
     }
 }
+
+export const joinWorkspace = async ({ workspaceid,joincode }) => {
+    try {
+        // 🔹 Local storage se token fetch karo
+        const token = localStorage.getItem('token');
+
+        
+        const response = await axios.put(
+            `/workspace/${workspaceid}/join`,
+            { joincode },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Auth header
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response.data.data;
+
+    } catch (error) {
+        console.error("Error adding member to workspace:", error?.response || error);
+
+        throw error?.response?.data || new Error("Network error");
+    }
+}

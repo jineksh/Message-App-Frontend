@@ -10,13 +10,15 @@ import {
 import { Button } from '@/components/ui/button';
 import { CopyIcon } from 'lucide-react';
 import { toast } from "sonner"; 
+import { useParams } from 'react-router-dom';
 const InvitePeopleModal = ({ open,setopen,workspacename, joincode }) => {
 
     async function handleclick() {
-        const inviteLink = `${window.location.origin}/join/${joincode}`;
+        const inviteLink = `${joincode}`;
         await navigator.clipboard.writeText(inviteLink);
         toast.success("Invite link copied to clipboard!");
     }
+    const {workspaceid} = useParams();
 
     return (
         <Dialog open={open} onOpenChange={setopen}>
@@ -34,6 +36,9 @@ const InvitePeopleModal = ({ open,setopen,workspacename, joincode }) => {
                     Copy Link 
                     <CopyIcon className='ml-2 h-4 w-4' />
                 </Button>
+                <a href={`/workspace/join/${workspaceid}`} className='text-blue-500 hover:underline mt-4'>
+                    Redirect to Join Page
+                </a>
             </DialogContent>
         </Dialog>
     )
