@@ -7,6 +7,7 @@ import { useWorkspacePreferenceModal } from '@/hooks/contextHooks/WorkspacePrefe
 import SideBarItem from '@/components/atoms/SideBarItem';
 import WorkspacePanelSection from '@/components/organisams/workspace/WorkspacePanelSection';
 import { useCreateChannelModal } from '@/hooks/contextHooks/Channel';
+import UserItem from '@/components/atoms/UserItem';
 
 const WorkspacePanel = () => {
   const { workspaceid } = useParams();
@@ -69,6 +70,32 @@ const WorkspacePanel = () => {
               variant='default'
             />
           ))}
+        </WorkspacePanelSection>
+
+
+      </div>
+
+      <div className='flex flex-col gap-y-2 mt-3'>
+        <WorkspacePanelSection
+          label={
+            <div className="flex items-center justify-between w-full pr-1">
+              <span>Members</span>
+            </div>
+          }
+        >
+          {workspace.members && workspace.members.length > 0 ? (
+            workspace.members.map((member) => (
+              <UserItem
+                key={member._id}
+                id={member._id}
+                label={member.name}   // ya username/email jo aapke API me ho
+                image={member.avatar} // agar user image ho to
+                variant="default"
+              />
+            ))
+          ) : (
+            <p className="text-xs text-white/70 px-4">No members found</p>
+          )}
         </WorkspacePanelSection>
       </div>
     </div>
